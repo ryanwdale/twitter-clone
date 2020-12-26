@@ -1,6 +1,6 @@
-package com.example.twitter;
+package com.example.twitter.tweet;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.example.twitter.user.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;

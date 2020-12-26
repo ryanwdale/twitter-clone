@@ -1,24 +1,20 @@
-package com.example.twitter;
+package com.example.twitter.user;
 
+import com.example.twitter.follow.Follow;
+import com.example.twitter.tweet.Tweet;
+import com.example.twitter.tweet.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-public class MainController {
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private TweetRepository tweetRepository;
-
-    @GetMapping("/tweets")
-    public List<Tweet> getTweets() {
-        return tweetRepository.findAll();
-    }
 
     @GetMapping("/users")
     public List<User> getUsers() {
