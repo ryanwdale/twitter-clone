@@ -1,7 +1,6 @@
-package com.example.twitter.follow;
+package com.twitter.follow;
 
-import com.example.twitter.follow.Follow;
-import com.example.twitter.user.User;
+import com.twitter.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

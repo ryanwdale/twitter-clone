@@ -1,6 +1,6 @@
-package com.example.twitter.user;
+package com.twitter.user;
 
-import com.example.twitter.tweet.TweetRepository;
+import com.twitter.tweet.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
-package com.example.twitter.like;
+package com.twitter.like;
 
-import com.example.twitter.tweetaction.TweetAction;
+import com.twitter.tweetaction.TweetAction;
 import lombok.Data;
 
 import javax.persistence.*;

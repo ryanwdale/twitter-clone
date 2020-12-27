@@ -1,6 +1,6 @@
-package com.example.twitter.follow;
+package com.twitter.follow;
 
-import com.example.twitter.user.User;
+import com.twitter.user.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

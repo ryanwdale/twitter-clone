@@ -1,7 +1,7 @@
-package com.example.twitter.user;
+package com.twitter.user;
 
-import com.example.twitter.follow.Follow;
-import com.example.twitter.tweet.Tweet;
+import com.twitter.follow.Follow;
+import com.twitter.tweet.Tweet;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;

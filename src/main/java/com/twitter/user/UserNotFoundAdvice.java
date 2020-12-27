@@ -1,4 +1,4 @@
-package com.example.twitter.user;
+package com.twitter.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

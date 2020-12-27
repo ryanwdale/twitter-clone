@@ -1,6 +1,6 @@
-package com.example.twitter.retweet;
+package com.twitter.retweet;
 
-import com.example.twitter.tweetaction.TweetAction;
+import com.twitter.tweetaction.TweetAction;
 import lombok.Data;
 
 import javax.persistence.Entity;

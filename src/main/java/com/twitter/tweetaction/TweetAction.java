@@ -1,7 +1,7 @@
-package com.example.twitter.tweetaction;
+package com.twitter.tweetaction;
 
-import com.example.twitter.tweet.Tweet;
-import com.example.twitter.user.User;
+import com.twitter.tweet.Tweet;
+import com.twitter.user.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;

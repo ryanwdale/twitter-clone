@@ -1,12 +1,11 @@
-package com.example.twitter.tweet;
+package com.twitter.tweet;
 
-import com.example.twitter.user.User;
-import com.example.twitter.user.UserNotFoundException;
-import com.example.twitter.user.UserRepository;
+import com.twitter.user.User;
+import com.twitter.user.UserNotFoundException;
+import com.twitter.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
 import java.util.List;
 
 @RestController

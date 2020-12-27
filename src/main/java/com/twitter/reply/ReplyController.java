@@ -1,4 +1,4 @@
-package com.example.twitter.reply;
+package com.twitter.reply;
 
 public class ReplyController {
 }

@@ -1,4 +1,4 @@
-package com.example.twitter.retweet;
+package com.twitter.retweet;
 
 public class RetweetController {
 }

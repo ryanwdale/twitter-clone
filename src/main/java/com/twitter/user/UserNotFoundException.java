@@ -1,4 +1,4 @@
-package com.example.twitter.user;
+package com.twitter.user;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(Long userId) {
