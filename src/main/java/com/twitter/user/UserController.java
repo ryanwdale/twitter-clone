@@ -1,7 +1,5 @@
 package com.example.twitter.user;
 
-import com.example.twitter.follow.Follow;
-import com.example.twitter.tweet.Tweet;
 import com.example.twitter.tweet.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +42,7 @@ public class UserController {
                     return userRepository.save(user);
                 })
                 .orElseGet(() -> {
-                    newUser.setId(id);
+                    newUser.setId(userId);
                     return userRepository.save(newUser);
                 });
     }

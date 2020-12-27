@@ -1,5 +1,6 @@
 package com.example.twitter.tweet;
 
+import com.example.twitter.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,5 +14,5 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
             "WHERE follow.follower_id = ?1", nativeQuery = true)
     List<Tweet> findTimeline(Long userId);
 
-    List<Tweet> findByUser(Long userId);
+    List<Tweet> findByUser(User user);
 }

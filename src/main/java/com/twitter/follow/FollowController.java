@@ -31,14 +31,19 @@ public class FollowController {
 
     @DeleteMapping("/follows")
     public void deleteFollow(@RequestParam Long followerId, @RequestParam Long followingId) {
-        User followed = userRepository.findById(followerId).orElseThrow(() -> new UserNotFoundException(followerId);
-        User follower = userRepository.findById(followingId).orElseThrow(() -> new UserNotFoundException(followingId);
+        User followed = userRepository.findById(followerId).orElseThrow(() -> new UserNotFoundException(followerId));
+        User follower = userRepository.findById(followingId).orElseThrow(() -> new UserNotFoundException(followingId));
         followRepository.deleteByFollowedAndFollower(followed, follower);
     }
 
     @GetMapping("/follows/{followId}")
     public Follow getFollow(@PathVariable Long followId) {
         return followRepository.findById(followId).orElseThrow(() -> new FollowNotFoundException(followId));
+    }
+
+    @GetMapping("/follows")
+    public List<Follow> getFollows() {
+        return followRepository.findAll();
     }
 
     @GetMapping("/user/{userId}/follows")
@@ -50,4 +55,5 @@ public class FollowController {
     public List<User> getUserFollowers(@PathVariable Long userId) {
         return userRepository.findFollowers(userId);
     }
+
 }

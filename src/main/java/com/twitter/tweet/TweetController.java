@@ -6,6 +6,7 @@ import com.example.twitter.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,8 @@ public class TweetController {
 
     @GetMapping("/users/{userId}/tweets")
     public List<Tweet> getUserTweets(@PathVariable Long userId) {
-        return tweetRepository.findByUser(userId);
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return tweetRepository.findByUser(user);
     }
 
     @GetMapping("/users/{userId}/timeline")
@@ -36,8 +38,10 @@ public class TweetController {
         return tweetRepository.findTimeline(userId);
     }
 
-    @PostMapping("/tweets/")
-    public Tweet addTweet(@RequestBody Tweet tweet) {
+    @PostMapping("/user/{userId}/tweets/")
+    public Tweet addTweet(@RequestParam String content, @PathVariable Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Tweet tweet = new Tweet(content, user);
         return tweetRepository.save(tweet);
     }
 

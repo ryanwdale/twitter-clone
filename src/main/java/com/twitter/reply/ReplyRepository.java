@@ -1,5 +1,7 @@
-package com.example.twitter.tweetaction;
+package com.example.twitter.reply;
 
+import com.example.twitter.reply.Reply;
+import com.example.twitter.tweetaction.TweetActionRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

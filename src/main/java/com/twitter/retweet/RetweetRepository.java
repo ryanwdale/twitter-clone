@@ -1,6 +1,6 @@
-package com.example.twitter.tweetaction;
+package com.example.twitter.retweet;
 
-import com.example.twitter.tweetaction.Retweet;
+import com.example.twitter.retweet.Retweet;
 import com.example.twitter.tweetaction.TweetActionRepository;
 import org.springframework.stereotype.Repository;
 
