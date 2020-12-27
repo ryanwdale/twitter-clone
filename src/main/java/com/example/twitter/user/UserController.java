@@ -21,35 +21,37 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/timeline/{userId}")
-    public List<Tweet> getTimeline(@PathVariable Long userId) {
-        return tweetRepository.findTimeline(userId);
+    @GetMapping("/users/{userId}")
+    public User getUser(@PathVariable Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
     }
 
-    @PutMapping("/follow")
-    public void follow(@RequestParam Long followerId, @RequestParam Long followingId) {
-        User follower = userRepository.findById(followerId)
-                .orElseThrow(() -> new UserNotFoundException(followerId));
-        User following = userRepository.findById(followingId)
-                .orElseThrow(() -> new UserNotFoundException(followingId));
-
-        Follow follow = new Follow(follower, following);
-        follower.addFollow(follow);
-        following.addFollower(follow);
-        userRepository.save(follower);
-    }
-
-    @PostMapping("/add/")
+    @PostMapping("users/")
     public User addUser(@RequestBody User user) {
         if (userRepository.findById(user.getId()).isPresent())
             return null;
         return userRepository.save(user);
     }
 
-    @PostMapping("/add/tweet/{userId}")
-    public Tweet addTweet(@PathVariable Long userId, @RequestParam String tweetContent) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Tweet tweet = new Tweet(tweetContent, user);
-        return tweetRepository.save(tweet);
+    @PutMapping("users/{userId}")
+    public User replaceUser(@RequestBody User newUser, @PathVariable Long userId) {
+        return userRepository.findById(userId)
+                .map(user -> {
+                    user.setUserName(newUser.getUserName());
+                    user.setTweets(newUser.getTweets());
+                    user.setFollows(newUser.getFollows());
+                    user.setFollowers(newUser.getFollows());
+                    return userRepository.save(user);
+                })
+                .orElseGet(() -> {
+                    newUser.setId(id);
+                    return userRepository.save(newUser);
+                });
     }
+
+    @DeleteMapping("/users/delete/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        userRepository.deleteById(userId);
+    }
+
 }
