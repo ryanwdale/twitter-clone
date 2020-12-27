@@ -1,4 +1,7 @@
 package com.example.twitter.tweet;
 
-public class TweetNotFoundException {
+public class TweetNotFoundException extends RuntimeException {
+    public TweetNotFoundException(Long tweetId) {
+        super("could not find tweet with ID: " + tweetId);
+    }
 }

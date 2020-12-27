@@ -12,4 +12,6 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
             "JOIN follow ON follow.followed_id = user.id " +
             "WHERE follow.follower_id = ?1", nativeQuery = true)
     List<Tweet> findTimeline(Long userId);
+
+    List<Tweet> findByUser(Long userId);
 }
