@@ -1,6 +1,7 @@
 package com.twitter.user;
 
 import com.twitter.follow.Follow;
+import com.twitter.reply.Reply;
 import com.twitter.tweet.Tweet;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
@@ -36,6 +37,9 @@ public class User {
     @OneToMany(mappedBy = "followed", cascade = CascadeType.ALL)
     private List<Follow> follows = new ArrayList<>();
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reply> replies = new ArrayList<>();
 
     public User(String userName) {
         this.userName = userName;

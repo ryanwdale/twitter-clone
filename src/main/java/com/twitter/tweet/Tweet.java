@@ -1,5 +1,7 @@
 package com.twitter.tweet;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.twitter.reply.Reply;
 import com.twitter.user.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -8,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,6 +28,10 @@ public class Tweet {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "tweet", cascade = CascadeType.ALL)
+    private List<Reply> replies = new ArrayList<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;
