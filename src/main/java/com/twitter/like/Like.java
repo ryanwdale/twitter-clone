@@ -8,5 +8,5 @@ import javax.persistence.*;
 @Data
 @Entity
 public class Like extends TweetAction {
-    public Like() {}
+
 }

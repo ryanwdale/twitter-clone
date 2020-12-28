@@ -22,4 +22,11 @@ public abstract class TweetAction {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    public TweetAction(User user, Tweet tweet) {
+        this.user = user;
+        this.tweet = tweet;
+    }
+
+    public TweetAction() {}
 }

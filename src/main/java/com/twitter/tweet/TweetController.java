@@ -1,5 +1,9 @@
 package com.twitter.tweet;
 
+import com.twitter.tweet.Tweet;
+import com.twitter.tweet.TweetNotFoundException;
+import com.twitter.tweet.TweetRepository;
+import com.twitter.tweet.TweetRequest;
 import com.twitter.user.User;
 import com.twitter.user.UserNotFoundException;
 import com.twitter.user.UserRepository;
@@ -37,15 +41,15 @@ public class TweetController {
         return tweetRepository.findTimeline(userId);
     }
 
-    @PostMapping("/user/{userId}/tweets/")
-    public Tweet addTweet(@RequestParam String content, @PathVariable Long userId) {
+    @PostMapping("/users/{userId}/tweets")
+    public Tweet addTweet(@RequestBody TweetRequest tweetRequest, @PathVariable Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Tweet tweet = new Tweet(content, user);
+        Tweet tweet = new Tweet(tweetRequest.getContent(), user);
         return tweetRepository.save(tweet);
     }
 
     @DeleteMapping("/tweets/{tweetId}")
-    public void addTweet(@PathVariable Long tweetId) {
+    public void deleteTweet(@PathVariable Long tweetId) {
         tweetRepository.deleteById(tweetId);
     }
 }
