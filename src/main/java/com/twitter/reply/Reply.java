@@ -18,4 +18,6 @@ public class Reply extends TweetAction {
         super(user, tweet);
         this.content = content;
     }
+
+    public Reply() {}
 }

@@ -11,4 +11,5 @@ import java.util.List;
 public interface TweetActionRepository<T extends TweetAction> extends JpaRepository<T, Long> {
     List<T> findByUser(User user);
     List<T> findByTweet(Tweet tweet);
+    List<T> findByTweetAndUser(Tweet tweet, User user);
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class ReplyController {
 
     @Autowired
@@ -43,15 +44,14 @@ public class ReplyController {
         return replyRepository.findByTweet(tweet);
     }
 
-    @GetMapping("/tweets/{tweetId}/replies/users/{userId}/")
-    public Reply addTweet(@RequestBody ReplyRequest replyRequest, @PathVariable Long userId, @PathVariable Long tweetId) {
+    @GetMapping("/tweets/{tweetId}/replies/users/{userId}")
+    public List<Reply> getTweetAndUserReplies(@PathVariable Long userId, @PathVariable Long tweetId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Tweet tweet = tweetRepository.findById(tweetId).orElseThrow(() -> new TweetNotFoundException(tweetId));
-        Reply reply = new Reply(user, tweet, replyRequest.getContent());
-        return replyRepository.save(reply);
+        return replyRepository.findByTweetAndUser(tweet, user);
     }
 
-    @PostMapping("/tweets/{tweetId}/replies")
+    @PostMapping("/tweets/{tweetId}/replies/users/{userId}")
     public Reply addReply(@RequestBody ReplyRequest replyRequest, @PathVariable Long userId, @PathVariable Long tweetId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Tweet tweet = tweetRepository.findById(tweetId).orElseThrow(() -> new TweetNotFoundException(tweetId));

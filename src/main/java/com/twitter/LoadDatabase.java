@@ -1,9 +1,11 @@
 package com.twitter;
 
+import com.twitter.reply.ReplyRepository;
 import com.twitter.tweet.Tweet;
 import com.twitter.tweet.TweetRepository;
 import com.twitter.follow.Follow;
 import com.twitter.follow.FollowRepository;
+import com.twitter.tweetaction.TweetActionRepository;
 import com.twitter.user.User;
 import com.twitter.user.UserRepository;
 import org.slf4j.Logger;
@@ -20,7 +22,10 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository,
                                    TweetRepository tweetRepository,
-                                   FollowRepository followRepository) {
+                                   FollowRepository followRepository,
+                                   ReplyRepository replyRepository) {
+
+        replyRepository.deleteAll();
         followRepository.deleteAll();
         tweetRepository.deleteAll();
         userRepository.deleteAll();
