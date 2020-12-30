@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -14,24 +15,24 @@ public class UserController {
     @Autowired
     private TweetRepository tweetRepository;
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     public User getUser(@PathVariable Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
     }
 
-    @PostMapping("users/")
+    @PostMapping
     public User addUser(@RequestBody User user) {
         if (userRepository.findById(user.getId()).isPresent())
             return null;
         return userRepository.save(user);
     }
 
-    @PutMapping("users/{userId}")
+    @PutMapping("/{userId}")
     public User replaceUser(@RequestBody User newUser, @PathVariable Long userId) {
         return userRepository.findById(userId)
                 .map(user -> {
@@ -47,7 +48,7 @@ public class UserController {
                 });
     }
 
-    @DeleteMapping("/users/delete/{userId}")
+    @DeleteMapping("/delete/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         userRepository.deleteById(userId);
     }

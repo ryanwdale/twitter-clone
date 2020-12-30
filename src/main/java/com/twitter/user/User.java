@@ -17,6 +17,8 @@ import java.util.List;
 @Entity
 public class User {
 
+    public enum Role {USER, ADMIN};
+
     @Id
     @GeneratedValue
     private Long id;
@@ -24,6 +26,9 @@ public class User {
     @NotNull
     @Column(unique = true)
     private String userName;
+
+    @NotNull
+    private String password;
 
     @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -41,8 +46,18 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     public User(String userName) {
         this.userName = userName;
+    }
+
+    public User(String userName, String password, Role role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
     }
 
     public User() {}

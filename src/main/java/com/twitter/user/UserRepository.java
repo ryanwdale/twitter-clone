@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -17,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "JOIN follow ON follow.follower_id = user.id " +
             "WHERE follow.followed_id = ?1", nativeQuery = true)
     List<User> findFollowers(Long userId);
+
+    Optional<User> findByUserName(String userName);
 }
