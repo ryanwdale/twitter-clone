@@ -1,11 +1,13 @@
 package com.twitter.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.twitter.follow.Follow;
 import com.twitter.reply.Reply;
 import com.twitter.tweet.Tweet;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,6 +30,8 @@ public class User {
     private String userName;
 
     @NotNull
+    @JsonIgnore
+    @ToString.Exclude
     private String password;
 
     @JsonBackReference
@@ -72,6 +76,10 @@ public class User {
 
     public void tweet(Tweet tweet) {
         tweets.add(tweet);
+    }
+
+    public void reply(Reply reply) {
+        replies.add(reply);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.twitter;
 
+import com.twitter.reply.Reply;
 import com.twitter.reply.ReplyRepository;
 import com.twitter.tweet.Tweet;
 import com.twitter.tweet.TweetRepository;
@@ -34,12 +35,17 @@ class LoadDatabase {
 
         Tweet tweet1 = new Tweet("cool tweet", john);
         Tweet tweet2 = new Tweet("very cool tweet", fred);
-
-        Follow follow = new Follow(john, fred);
+        Tweet tweet3 = new Tweet("another cool tweet", fred);
         john.tweet(tweet1);
         fred.tweet(tweet2);
+        fred.tweet(tweet3);
+
+        Follow follow = new Follow(john, fred);
         john.addFollow(follow);
         fred.addFollower(follow);
+
+        Reply reply = new Reply(john, tweet2, "nice");
+        john.reply(reply);
 
         return args -> {
             log.info("Preloading " + userRepository.save(john));
